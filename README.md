@@ -29,6 +29,15 @@
     6. 在 Codex App 添加 SSH 连接。
     7. Codex 连接状态变绿后，即可打开远程目录。
     8. 远程 Codex 登录推荐采用 API Key 方式，不依赖浏览器网页登录。
+12. Codex 可以通过本地 Git SSH 连接 GitHub，用于拉取、提交和推送代码。具体指令交给 AI 根据当前环境生成。
+    1. 在 Mac 本机生成 GitHub 专用 SSH 密钥。
+    2. 把公钥添加到 GitHub：`Settings -> SSH and GPG keys -> New SSH key`。
+    3. 在 Mac 测试 GitHub SSH，`ssh -T git@github.com` 显示认证成功即完成。
+    4. 将项目 Git remote 从 HTTPS 改为 SSH，例如 `git@github.com:用户名/仓库名.git`。
+    5. 如果 `git push` 提示 `Permission denied (publickey)`，检查 SSH 是否使用了正确的 GitHub 私钥。
+    6. 必要时在 `~/.ssh/config` 中为 `github.com` 指定 `IdentityFile`，避免每次手动指定私钥。
+    7. 连接成功后，Codex 可以在本地项目中执行 `git pull`、`git add`、`git commit`、`git push` 等操作。
+    8. 推送前必须先检查 `git status` 和 diff，避免把无关文件、构建产物、密钥、数据库备份或大资源文件提交到 GitHub。
 
 ## 二、其他配套生态与平台
 1. 团结引擎生态
